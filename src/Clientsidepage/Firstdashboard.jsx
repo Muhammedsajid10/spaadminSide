@@ -1,33 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaHome,
   FaCalendarAlt,
-  FaTags,
-  FaSmile,
-  FaBook,
-  FaImage,
-  FaBullhorn,
-  FaUsers,
-  FaChartLine,
+  FaUserFriends,
+  FaUserTie,
+  FaGift,
+  FaIdCard,
+  FaListAlt,
+  FaClipboardList,
+  FaCrown,
+  FaDollarSign,
+  FaMoneyBill,
+  FaLayerGroup,
+  FaTachometerAlt,
+  FaCalendarCheck,
+  FaChartBar,
   FaThLarge,
+  FaTh,
+  FaBars,
+  FaSmile,
 } from "react-icons/fa";
 import "./Firstdashboard.css";
 
 const Sidenavbar = () => {
-  const [active, setActive] = useState(2);
 
   const menuItems = [
-    { icon: <FaHome />, label: "Home", to: "/" },
-    { icon: <FaCalendarAlt />, label: "Calendar", to: "/calendar" },
-    { icon: <FaTags />, label: "Tags", to: "/tags" },
-    { icon: <FaSmile />, label: "Smile", to: "/smile" },
-    { icon: <FaBook />, label: "Book", to: "/book" },
-    { icon: <FaImage />, label: "Images", to: "/images" },
-    { icon: <FaBullhorn />, label: "Announcements", to: "/announcements" },
-    { icon: <FaUsers />, label: "Users", to: "/users" },
-    { icon: <FaChartLine />, label: "Analytics", to: "/analytics" },
-    { icon: <FaThLarge />, label: "Apps", to: "/apps" },
+    { icon: <FaHome />, label: "Home", to: "/home" },
+    { icon: <FaTachometerAlt />, label: "Dashboard", to: "/dashboard" },
+    { icon: <FaUserFriends />, label: "Appointments", to: "/appointments" },
+    { icon: <FaUserTie />, label: "Team Members", to: "/team-members" },
+    { icon: <FaGift />, label: "Gift Cards", to: "/gift-cards" },
+    { icon: <FaIdCard />, label: "Membership", to: "/membership" },
+    { icon: <FaListAlt />, label: "Clients List", to: "/clients-list" },
+    { icon: <FaClipboardList />, label: "Today & Body", to: "/today-body" },
+    { icon: <FaCrown />, label: "Members", to: "/members" },
+    { icon: <FaDollarSign />, label: "Daily Sales", to: "/daily-sales" },
+    { icon: <FaMoneyBill />, label: "Payment Client", to: "/payment-client" },
+    { icon: <FaDollarSign />, label: "Sales Page", to: "/sales-page" },
+    { icon: <FaLayerGroup />, label: "Top Service", to: "/top-service" },
+    { icon: <FaCalendarCheck />, label: "Scheduled Shifts", to: "/scheduled-shifts" },
+    { icon: <FaChartBar />, label: "Graphs", to: "/graphs" },
+    { icon: <FaCalendarAlt />, label: "Select Calendar", to: "/select-calendar" },
+    { icon: <FaThLarge />, label: "Second Dashboard", to: "/second-dashboard" },
+    { icon: <FaTh />, label: "First Dashboard", to: "/first-dashboard" },
+    { icon: <FaBars />, label: "Navbar", to: "/navbar" },
+    { icon: <FaSmile />, label: "Demo", to: "/demo" },
   ];
 
   return (
@@ -37,12 +55,12 @@ const Sidenavbar = () => {
           to={item.to}
           key={index}
           className={({ isActive }) =>
-            `sb-icon-wrapper ${isActive || active === index ? "sb-active" : ""}`
+            `sb-icon-wrapper${isActive ? " sb-active" : ""}`
           }
-          onClick={() => setActive(index)}
           title={item.label}
         >
           <span className="sb-icon">{item.icon}</span>
+          <span className="sb-label">{item.label}</span>
         </NavLink>
       ))}
     </div>

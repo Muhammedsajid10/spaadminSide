@@ -23,6 +23,8 @@ import Firstdashboard from "./Clientsidepage/Firstdashboard";
 import Demo from "./Clientsidepage/Demo";
 import Navbar from "./Clientsidepage/Navbar";
 import "./App.css";
+import HomePage from "./Clientsidepage/HomePage";
+import DashboardLayout from "./Clientsidepage/";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,28 +32,27 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><Graphs/><Todayandbody/><TopService/></>}/>
-        {/* <Route path="/" element={<Appoint />} /> */}
-        {/* <Route path="/" element={<Teammembers />} /> */}
-        {/* <Route path="/" element={<Giftcards />} /> */}
-        {/* <Route path="/" element={<Membership />} /> */}
-        {/* <Route path="/" element={<ClientsList />} /> */}
-        {/* <Route path="/" element={<Todayandbody />} /> */}
-        {/* <Route path="/" element={<Memberss />} /> */}
-        {/* <Route path="/" element={<Dailysalesss />} />  */}
-        {/* <Route path="/" element={<Paymentclient />} /> */}
-        {/* <Route path="/" element={<SalesPage />} /> */}
-        {/* <Route path="/" element={<TopService />} /> */}
-        {/* <Route path="/" element={<Dashboard />} /> */}
-        {/* <Route path="/" element={<Sheduledshifts />} /> */}
-        {/* <Route path="/" element={<Graphs />} /> */}
-        {/* <Route path="/" element={<Selectcalander />} /> */}
-        {/* <Route path="/" element={<LoginPage />} />   */}
-        {/* <Route path="/" element={<Signuppage />} /> */}
-        {/* <Route path="/" element={<Seconddashboard />} /> */}
-        {/* <Route path="/" element={<Firstdashboard />} /> */}
-        {/* <Route path="/" element={<Navbar />} /> */}
-        {/* <Route path="/" element={<Demo />} /> */}
+        {/* Public routes (login/signup) can go here if needed */}
+        <Route element={<DashboardLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/appointments" element={<Appoint />} />
+          <Route path="/gift-cards" element={<Giftcards />} />
+          <Route path="/membership" element={<Membership />} />
+          <Route path="/clients-list" element={<ClientsList />} />
+          {/* <Route path="/today-body" element={<Todayandbody />} /> */}
+          <Route path="/members" element={<Memberss />} />
+          <Route path="/daily-sales" element={<Dailysalesss />} />
+          <Route path="/payment-client" element={<Paymentclient />} />
+          <Route path="/sales-page" element={<SalesPage />} />
+          {/* <Route path="/top-service" element={<TopService />} /> */}
+          <Route path="/scheduled-shifts" element={<Sheduledshifts />} />
+          {/* <Route path="/graphs" element={<Graphs />} /> */}
+          <Route path="/select-calendar" element={<Selectcalander />} />
+          <Route path="/second-dashboard" element={<Seconddashboard />} />
+          <Route path="/navbar" element={<Navbar />} />
+          <Route path="/demo" element={<Demo />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
