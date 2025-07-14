@@ -1,11 +1,30 @@
-/* SalesDashboard.css */
+/* SecondDashboard.css */
 
+.sidebar-toggle-container {
+  position: fixed;
+  left: 80px;
+  top: 64px;
+  z-index: 100;
+}
+/* Sales sidebar styles */
 .sales-container {
-  max-width: 400px;
-  margin: 0 auto;
+  width: 400px;
   background-color: #ffffff;
-  min-height: 100vh;
+  height: calc(100vh - 64px);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  position: fixed;
+  left: 80px; /* Space for main sidebar */
+  top: 64px;
+  border-right: 1px solid #f0f0f0;
+  overflow-y: auto;
+  z-index: 99;
+  transition: all 0.3s ease-out;
+  margin-left: 50px;
+}
+
+.sales-container.hidden {
+  transform: translateX(400px); /* Move right by its own width */
+  opacity: 0;
 }
 
 .header {
@@ -15,21 +34,33 @@
   position: relative;
 }
 
+/* Adjust back button position */
 .back-button {
-  position: absolute;
-  right: 24px;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  color: #666666;
+  position: fixed;
+  left: 480px; /* 80px + 400px */
+  top: 80px;
+  z-index: 100;
+  transition: all 0.3s ease-out;
+  background: white;
+  border: 1px solid #e0e0e0;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.back-button.hidden {
+  transform: rotate(180deg);
+  left: 80px; /* Align with main sidebar when hidden */
+}
+
+
+.back-button:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #f8f8f8;
 }
 
 .back-button:hover {
@@ -49,22 +80,26 @@
 }
 
 .menu-item {
-  padding: 16px 0;
+  padding: 16px 24px;
   font-size: 18px;
   color: #333333;
   cursor: pointer;
   border-bottom: 1px solid #f0f0f0;
   transition: background-color 0.2s;
   margin: 0 -24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  text-decoration: none;
+  display: block;
 }
 
 .menu-item:hover {
   background-color: #e8f0fe;
   color: #1a73e8;
 }
-
+/* Adjust main content margin */
+.main-content {
+  transition: margin-left 0.3s ease-out;
+  margin-left: 120px; /* Default: space for both sidebars */
+}
 .menu-item.subtitle {
   font-size: 18px;
   color: #666666;
@@ -72,6 +107,9 @@
   cursor: default;
   padding-top: 8px;
   padding-bottom: 20px;
+}
+.main-content.sidebar-hidden {
+  margin-left: 80px; /* When sales sidebar is hidden, only space for main sidebar */
 }
 
 .menu-item.subtitle:hover {

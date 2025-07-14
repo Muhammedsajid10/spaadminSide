@@ -1,18 +1,20 @@
 .sb-sidebar {
-  width: 200px;
+  width: 120px;
   background-color: #111;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
   height: 100vh;
+  position: fixed
 }
 
+
 .sb-icon-wrapper {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 100px;
   margin: 10px 0;
-  color: white;
+  color: rgb(247, 242, 242);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,14 +24,14 @@
   text-decoration: none;
 }
 
-.sb-icon-wrapper:hover {
-  background-color: #333;
-}
-
-/* .sb-icon-wrapper.sb-active {
-  background-color: #7a5af8;
+/* .sb-icon-wrapper:hover {
+  background-color: #f50505;
 } */
 
+.sb-icon-wrapper.sb-active {
+  background-color: #7a5af8;
+}
+
 .sb-icon {
-  font-size: 18px;
+  font-size: 40px;
 }

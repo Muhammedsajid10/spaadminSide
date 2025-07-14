@@ -1,17 +1,21 @@
 /* Main Container */
-.client-directory-container {
+.SecondDashboard-container {
   min-height: 100vh;
   background-color: #f9fafb;
-  padding: 1rem;
+  padding: 24px 24px 24px 0; /* Remove left padding */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.client-directory-wrapper {
-  max-width: 1280px;
-  margin: 0 auto;
+.SecondDashboard-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Header Section */
 .directory-header {
+  width: 100%;
   margin-bottom: 1.5rem;
 }
 
@@ -139,10 +143,12 @@
 
 /* Search and Filter Section */
 .directory-search-filters {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .search-input-box {
@@ -221,11 +227,11 @@
 
 /* Table */
 .client-table-container {
+  width: 100%;
   background-color: white;
   border-radius: 0.5rem;
   border: 1px solid #e5e7eb;
-  overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow-x: auto; /* Enable horizontal scroll if needed */
 }
 
 .client-table-header {
@@ -239,6 +245,8 @@
   gap: 1rem;
   padding: 0.75rem 1rem;
   align-items: center;
+  width: 100%;
+  min-width: max-content; /* Prevent grid items from shrinking too much */
 }
 
 .client-table-body {
@@ -388,6 +396,32 @@
   .client-secondary-phone { display: block; }
   .created-date-full { display: inline; }
   .created-date-short { display: none; }
+}
+
+@media (max-width: 768px) {
+  .SecondDashboard-container {
+    padding: 16px 16px 16px 0; /* Keep consistent with no left padding */
+  }
+  
+  .directory-search-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input-box {
+    max-width: none; /* Allow search box to take full width on mobile */
+  }
+}
+
+/* Update table layout for better full-width display */
+.table-row-client {
+  display: grid;
+  grid-template-columns: 3rem minmax(200px, 2fr) minmax(150px, 1.5fr) minmax(80px, 0.8fr) minmax(100px, 1fr) minmax(120px, 1fr);
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  width: 100%;
+  min-width: max-content; /* Prevent grid items from shrinking too much */
 }
 
 @media (max-width: 639px) {

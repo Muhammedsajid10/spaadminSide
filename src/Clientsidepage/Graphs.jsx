@@ -37,7 +37,6 @@ const appointmentData = [
 
 const Graphs = () => {
   return (
-    <div className="dashboard-container">
       <div className="card">
         <div className="card-header">
           <h3>Recent sales</h3>
@@ -64,31 +63,7 @@ const Graphs = () => {
         </div>
       </div>
 
-      <div className="card">
-        <div className="card-header">
-          <h3>Upcoming appointments</h3>
-          <span>Next 7 days</span>
-          <h1>5 booked</h1>
-          <p>
-            Confirmed appointments <strong>5</strong>
-          </p>
-          <p>
-            Cancelled appointments <strong>0</strong>
-          </p>
-        </div>
-        <div className="chart-wrapper">
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={appointmentData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="day" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="confirmed" fill="#5B2EFF" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
+    
   );
 };
 

@@ -282,7 +282,7 @@ const DateRangePicker = ({ isOpen, onClose, onApply, currentDateFilter }) => {
           <h2>Date range</h2>
           <div className="date-range-dropdown">
             <select className="month-dropdown">
-              <option>Month to date</option>
+              <option>Month to date</option>  
               <option>Last 7 days</option>
               <option>Last 30 days</option>
               <option>Custom range</option>

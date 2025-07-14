@@ -1,0 +1,9 @@
+.team-side-content
+ {
+    flex: 1;
+    margin-left: 450px;
+    padding: 20px;
+    width: 100%;
+    /* padding-left: 0px; */
+    /* margin-left: 11px; */
+}

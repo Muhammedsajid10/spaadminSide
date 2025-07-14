@@ -1,0 +1,38 @@
+.dashboard-container {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.layout-nav-bar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #fff;
+  z-index: 1000;
+}
+
+.dashboard-content {
+  display: flex;
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 80px; /* Width of main sidebar */
+  padding: 20px;
+  /* width: 100%; */
+  padding-left: 0px;
+  /* margin-left: 11px; */
+    /* Width of main sidebar */
+}
+
+/* Sales sidebar specific styles */
+.sales-content {
+  margin-left: 10px; 
+  
+}

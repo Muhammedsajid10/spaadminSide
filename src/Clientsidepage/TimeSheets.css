@@ -1,0 +1,102 @@
+/* Add main container styles */
+.SecondDashboard {
+  margin-left: 80px; /* Align with main sidebar */
+  padding: 24px 24px 24px 0;
+  width: calc(100% - 80px);
+  box-sizing: border-box;
+}
+.timesheets-container{
+    width: 100%;
+    margin-left:100px;
+    margin-top: 100px;
+    /* padding: 16px; */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+    /* border-radius: 8px; */
+    /* background-color: #ffffff; */
+}
+/* Adjust table container */
+.timesheets-table-container {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+/* Keep existing table styles */
+.timesheets-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.timesheets-table th,
+.timesheets-table td {
+  text-align: left;
+  padding: 16px;
+  white-space: nowrap;
+}
+
+.timesheets-table th {
+  background-color: #f9fafb;
+  font-weight: 500;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-row td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Adjust specific column widths */
+.team-member-col {
+  width: 30%;
+}
+
+.date-col {
+  width: 15%;
+}
+
+.clock-col {
+  width: 15%;
+}
+
+.breaks-col {
+  width: 10%;
+}
+
+.hours-col {
+  width: 15%;
+}
+
+.status-col {
+  width: 15%;
+}
+
+/* Make sure member info stays in one line */
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.member-details {
+  min-width: 0;
+}
+
+.member-name,
+.member-location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Add responsive handling */
+@media (max-width: 768px) {
+  .SecondDashboard {
+    margin-left: 0;
+    padding: 16px;
+    width: 100%;
+  }
+}

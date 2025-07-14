@@ -7,9 +7,9 @@ const SalesPage = () => {
   return (
     <div className="sp-container">
       <div className="sp-header">
-        <button className="sp-btn-back"><FiChevronLeft /></button>
+        {/* <button className="sp-btn-back"><FiChevronLeft /></button>   */}
         <div>
-          <h1 className="sp-title">Sales</h1>
+          <h1 className="sp-title">Sales </h1>
           <p className="sp-subtext">
             View, filter and export the history of your sales. <a href="#">Learn more</a>
           </p>
