@@ -14,23 +14,19 @@ const SecondDashboard = () => {
     }
   };
 
-  // Rest of your component remains the same
   return (
     <>
-     
       <div className={`sales-container ${!isVisible ? 'hidden' : ''}`}>
- <div className="menu-list">
-  <h1>Sales <strong /></h1>
-          {/* <Link to="/sales-sidebar" className="menu-item">Overview</Link> */}
-          <Link to="/sales-sidebar/" className="menu-item">Daily sales summary</Link>
-          <Link to="/sales-sidebar/appointments" className="menu-item">Appoinments</Link>
-          <Link to="/sales-sidebar/sales-page" className="menu-item">Sales</Link>
-          
-
-          <Link to="/sales-sidebar/payments" className="menu-item">Payments</Link>
-          <Link to="/sales-sidebar/gift-cards" className="menu-item">Gift cards sold</Link>
-          <Link to="/sales-sidebar/membership" className="menu-item">Memberships sold</Link>
-        </div>      </div>
+        <div className="menu-list">
+          <h1>Sales <strong /></h1>
+          <Link to="/sales/" className="menu-item">Daily Sales Summary</Link>
+          <Link to="/sales/appointments" className="menu-item">Appointments</Link>
+          <Link to="/sales/sales-page" className="menu-item">Sales</Link>
+          <Link to="/sales/payments" className="menu-item">Payments</Link>
+          <Link to="/sales/gift-cards" className="menu-item">Gift Cards Sold</Link>
+          <Link to="/sales/memberships" className="menu-item">Memberships Sold</Link>
+        </div>
+      </div>
     </>
   );
 };

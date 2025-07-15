@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 60px;
   height: 100vh;
   position: fixed
 }
@@ -13,7 +13,7 @@
 .sb-icon-wrapper {
   width: 60px;
   height: 100px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   color: rgb(247, 242, 242);
   display: flex;
   justify-content: center;
@@ -33,5 +33,5 @@
 }
 
 .sb-icon {
-  font-size: 30px;
+  font-size: 20px;
 }

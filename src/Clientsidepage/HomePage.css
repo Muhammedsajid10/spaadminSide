@@ -1,104 +1,324 @@
-.first-row {
+/* General Body and Container Styles */
+body {
+    font-family: "Segoe UI", sans-serif;
+}
+
+.dashboard-container,
+.top-stats-container,
+.appointments-layout {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* 16px */
+    padding: 1rem;
+    justify-content: center;
+}
+
+/* Card Styles */
+.card,
+.stats-card,
+.appointments-left-section,
+.appointments-right-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem; /* 24px */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 450px;
+    max-width: 680px;
+}
+
+.stats-card {
+    min-width: 280px;
+}
+
+/* Card Headers and Titles */
+.card-header h3,
+.stats-title {
+    font-size: 1.3rem; /* 20.8px */
+    margin: 0;
+    color: #333;
+}
+
+.stats-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card-header h1 {
+    font-size: 2.4rem; /* 38.4px */
+    margin: 0.6rem 0;
+    color: #111;
+}
+
+/* Chart Wrapper */
+.chart-wrapper {
+    margin-top: 1.5rem;
     width: 100%;
-    height: calc(100vh - 100px);
-    padding: 2rem;
-    gap: 1rem;
+    height: 250px;
 }
 
-
-.recent-sales {
-    width: 80%;
-    min-width: 50%;
-    height: 100%;
-    flex: 0 0 35%;
-}
-.home-page-content {
-     display: flex;
-  flex-direction: column;
-  gap: 1px;
-  margin-left: 80px;
-  width: 100%;
-}
-
-.upcoming-appointments {
-    width: 50%;
-    min-width: 50%;
-    height: 100%;
-    flex: 0 0 35%;
-}
-
-.home-page-container {
-  padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.dashboard-row {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  min-height: 450px; /* Set minimum height for rows */
-}
-
-.dashboard-col {
-  flex: 1;
-  min-width: 0; /* Prevents flex items from overflowing */
-  display: flex; /* Make columns flex containers */
-}
-
-/* Make all direct children of dashboard-col take full height */
-.dashboard-col > * {
-  width: 100%;
-  height: 100%;
-  min-height: 450px; /* Ensure minimum height for components */
-}
-
-/* Specific component styles to ensure they fill their containers */
-.dashboard-col .card,
-.dashboard-col .graphs-container,
-.dashboard-col .upcoming-appointments,
-.dashboard-col .appointments-redesign,
-.dashboard-col .top-service {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Make layout responsive for tablets */
-@media (max-width: 1024px) {
-  .dashboard-row {
-    gap: 1rem;
-    min-height: 400px;
-  }
-
-  .dashboard-col > * {
-    min-height: 400px;
-  }
-
-  .home-page-container {
-    padding: 0.75rem;
-  }
-}
-
-/* Stack components vertically on mobile */
-@media (max-width: 768px) {
-  .dashboard-row {
+/* Stats Table */
+.stats-table {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    gap: 1rem;
-    min-height: auto;
-  }
+}
 
-  .dashboard-col {
-    width: 100%;
-  }
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
 
-  .dashboard-col > * {
-    min-height: 350px; /* Slightly smaller height on mobile */
-  }
+.stats-header {
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
 
-  .home-page-container {
-    padding: 0.5rem;
-  }
+.stats-cell {
+    flex: 1;
+    text-align: left;
+    font-size: 17px;
+    padding: 0 8px;
+}
+
+.stats-cell:last-child {
+    border-right: none;
+}
+
+/* Appointments Section */
+.appointments-left-section .activity-container h2 {
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-card {
+    display: flex;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.activity-date {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    min-width: 60px;
+}
+
+.activity-details {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.activity-time-status {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.activity-time {
+    color: #666;
+    font-size: 14px;
+}
+
+.activity-status {
+    background-color: #e3d8fd;
+    color: #6c47dc;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.activity-status.completed {
+    background-color: #d9f3db;
+    color: #2e7d32;
+}
+
+.activity-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.activity-type {
+    font-size: 14px;
+    color: #666;
+}
+
+.activity-payment {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.activity-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #222;
+}
+
+/* Next Appointment Section */
+.next-appointment-container {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.next-appointment-heading {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.next-appointment-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.next-date-box {
+    text-align: center;
+    min-width: 60px;
+}
+
+.next-date {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.next-month {
+    font-size: 14px;
+    color: gray;
+}
+
+.next-details {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.next-time-status {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.next-time {
+    font-size: 14px;
+    color: #666;
+}
+
+.next-status {
+    background-color: #e3d8fd;
+    color: #6c47dc;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.next-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.next-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.next-location {
+    font-size: 13px;
+    font-style: italic;
+    color: #3333cc;
+    margin-top: 4px;
+}
+
+.next-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #222;
+    margin-top: 6px;
+}
+
+/* Scrollbar Styles */
+.activity-scroll-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.activity-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.activity-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .dashboard-container,
+    .top-stats-container,
+    .appointments-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .top-stats-container,
+    .appointments-layout {
+        align-items: center;
+    }
+
+    .activity-card,
+    .next-appointment-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .activity-price,
+    .next-price {
+        margin-left: auto;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .activity-title,
+    .next-title {
+        font-size: 14px;
+    }
+
+    .activity-type,
+    .next-info,
+    .next-location {
+        font-size: 13px;
+    }
+
+    .activity-time,
+    .next-time {
+        font-size: 12px;
+    }
+
+    .activity-price,
+    .next-price {
+        font-size: 14px;
+    }
 }

@@ -1,9 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidenavbar from "../Clientsidepage/Firstdashboard";
-// import "../Clientsidepage/DashboardLayout.css";
 import Navbar from "./Navbar";
-import "../Clientsidepage/HomePage.css";
+import Sidenavbar from "./Firstdashboard";
+import "./DashboardLayout.css";
 
 const DashboardLayout = () => {
   return (
@@ -12,8 +11,10 @@ const DashboardLayout = () => {
         <Navbar />
       </div>
       <div className="dashboard-content">
-        <Sidenavbar />
-        <div className="home-page-content">
+        <div className="sidebar-container">
+          <Sidenavbar />
+        </div>
+        <div className="main-content">
           <Outlet />
         </div>
       </div>

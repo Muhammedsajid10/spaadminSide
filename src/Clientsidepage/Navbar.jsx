@@ -8,6 +8,17 @@ import spa from '../Images/spppa.jpg';
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll events
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Handle body scrolling when dropdowns are open
   useEffect(() => {
@@ -72,7 +83,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="navbar-container">
+    <nav className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
       <img src={spa} alt="Logo" className='spa-image' />
 
       <div className="navbar-icons">

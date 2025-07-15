@@ -19,11 +19,10 @@ const CatalogSidebar = () => {
       <div className={`catalog-container ${!isVisible ? 'hidden' : ''}`}>
         <div className="catalog-header">
           <h1 className='catalog-heading'>Catalog</h1>
-        
         </div>
         <div className="menu-list">
-          <Link to="/catalog-sidebar/" className="menu-item">Service Menu</Link>
-          <Link to="/catalog-sidebar/memberships" className="menu-item">Memberships</Link>
+          <Link to="/catalog/" className="menu-item">Service Menu</Link>
+          <Link to="/catalog/memberships" className="menu-item">Memberships</Link>
         </div>
       </div>
     </>

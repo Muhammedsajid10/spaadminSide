@@ -25,18 +25,15 @@ import {
 import "./Firstdashboard.css";
 
 const Sidenavbar = () => {
-
   const menuItems = [
     { icon: <FaHome />, label: "Home", to: "/" },
-    { icon: <FaCalendarAlt />, label: "Dashboard", to: "/calendar" },
-
-    { icon: <FaSalesforce />, label: "Dashboard", to: "/sales-sidebar" },
-
-    { icon: <FaUserFriends />, label: "Appointments", to: "/clients-list" },
-    { icon: <FaUserTie />, label: "Team Members", to: "/catalog-sidebar" },
-    { icon: <FaGift />, label: "Gift Cards", to: "/team-sidebar" },
-    { icon: <FaIdCard />, label: "Membership", to: "/dashboard" },
-
+    { icon: <FaCalendarAlt />, label: "Calendar", to: "/calendar" },
+    { icon: <FaSalesforce />, label: "Sales", to: "/sales" },
+    { icon: <FaUserFriends />, label: "Appointments", to: "/appointments" },
+    { icon: <FaUserTie />, label: "Team", to: "/team" },
+    { icon: <FaThLarge />, label: "Catalog", to: "/catalog" },
+    { icon: <FaIdCard />, label: "Clients", to: "/clients-list" },
+    { icon: <FaTachometerAlt />, label: "Dashboard", to: "/dashboard" },
   ];
 
   return (
@@ -48,10 +45,8 @@ const Sidenavbar = () => {
           className={({ isActive }) =>
             `sb-icon-wrapper${isActive ? " sb-active" : ""}`
           }
-          title={item.label}
         >
           <span className="sb-icon">{item.icon}</span>
-       
         </NavLink>
       ))}
     </div>

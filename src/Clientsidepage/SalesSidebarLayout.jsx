@@ -3,22 +3,21 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidenavbar from './Firstdashboard';
 import SecondDashboard from './Seconddashboard';
-import "../Clientsidepage/SalesSidebarLayout.css"
+import './SalesSidebarLayout.css';
 
 const SalesSidebarLayout = () => {
   return (
-    <div className="dashboard-container">
+     <>
       <div className="layout-nav-bar">
         <Navbar />
       </div>
-      <div className="dashboard-content">
-        <Sidenavbar />
+    <div className="dashboard-content">
         <SecondDashboard />
-        <div className="sales-side-content">
+       <div className="main-content">
           <Outlet />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

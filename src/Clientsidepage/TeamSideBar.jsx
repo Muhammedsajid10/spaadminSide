@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Seconddashboard.css';
+import './TeamSidebar.css'; // You'll need to create this CSS file
 
-const TeamSideBar = () => {
+const TeamSidebar = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleBackClick = () => {
     setIsVisible(!isVisible);
-    const mainContent = document.querySelector('.main-content');
+    // Update main content margin when sidebar is toggled
+    const mainContent = document.querySelector('.team-content');
     if (mainContent) {
-      // Toggle the sidebar-hidden class for margin adjustment
-      mainContent.style.marginLeft = isVisible ? '80px' : '480px';
+      mainContent.style.marginLeft = isVisible ? '80px' : '380px';
     }
   };
 
-  // Rest of your component remains the same
   return (
     <>
-   
-      <div className={`sales-container ${!isVisible ? 'hidden' : ''}`}>
- <div className="menu-list">
-  <h1>Team <strong /></h1>
-          {/* <Link to="/sales-sidebar" className="menu-item">Overview</Link> */}
-          <Link to="/team-sidebar/" className="menu-item">Team Members</Link>
-          <Link to="/team-sidebar/sheduled-shifts" className="menu-item">Sheduled Shifts</Link>
-          <Link to="/team-sidebar/time-sheets" className="menu-item">Time Sheets</Link>
-
-        </div>      </div>
+      <div className={`team-container ${!isVisible ? 'hidden' : ''}`}>
+        <div className="team-header">
+          <h1 className='team-heading'>Team</h1>
+        </div>
+        <div className="menu-list">
+          <Link to="/team/" className="menu-item">Team Members</Link>
+          <Link to="/team/scheduled-shifts" className="menu-item">Scheduled Shifts</Link>
+          <Link to="/team/time-sheets" className="menu-item">Time Sheets</Link>
+        </div>
+      </div>
     </>
   );
 };
 
-export default TeamSideBar;
+export default TeamSidebar;

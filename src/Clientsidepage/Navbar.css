@@ -55,6 +55,12 @@
   padding: 0 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Add shadow when scrolling */
+.navbar-container.scrolled {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .spa-image {
@@ -94,10 +100,10 @@
 
 /* Search Dropdown */
 .search-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 0.5rem;
+  position: fixed;
+  top: 64px; /* Height of navbar */
+  right: 1.5rem;
+  margin-top: 0;
   width: 300px;
   background: white;
   border-radius: 8px;
@@ -116,10 +122,10 @@
 
 /* Notification Dropdown */
 .notification-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 0.5rem;
+  position: fixed;
+  top: 64px; /* Height of navbar */
+  right: 1.5rem;
+  margin-top: 0;
   width: 380px;
   max-height: calc(100vh - 80px);
   background: white;
@@ -307,9 +313,6 @@
 body.dropdown-open {
   overflow: hidden;
 }
-
-
-
 
 /* Appointments Component Styles */
 .appointments-container {

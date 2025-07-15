@@ -11,7 +11,6 @@ const CatalogSidebarLayout = () => {
         <Navbar />
       </div>
       <div className="dashboard-content">
-        <Sidenavbar />
         <CatalogSidebar />
         <div className="catalog-content">
           <Outlet />
