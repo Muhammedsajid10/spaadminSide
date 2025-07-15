@@ -30,9 +30,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<><Graphs/><Todayandbody/><TopService/></>}/>
-        {/* <Route path="/" element={<Appoint />} /> */}
-        {/* <Route path="/" element={<Teammembers />} /> */}
+        <Route path="/appointments" element={<Appoint />} />
+        <Route path="/teamMembers" element={<Teammembers />} />
         {/* <Route path="/" element={<Giftcards />} /> */}
         {/* <Route path="/" element={<Membership />} /> */}
         {/* <Route path="/" element={<ClientsList />} /> */}
