@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Seconddashboard.css';
 
-const SecondDashboard = () => {
+const TeamSideBar = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleBackClick = () => {
@@ -27,19 +27,15 @@ const SecondDashboard = () => {
       </button>
       <div className={`sales-container ${!isVisible ? 'hidden' : ''}`}>
  <div className="menu-list">
-  <h1>Sales <strong /></h1>
+  <h1>Team <strong /></h1>
           {/* <Link to="/sales-sidebar" className="menu-item">Overview</Link> */}
-          <Link to="/sales-sidebar/" className="menu-item">Daily sales summary</Link>
-          <Link to="/sales-sidebar/appointments" className="menu-item">Appoinments</Link>
-          <Link to="/sales-sidebar/sales-page" className="menu-item">Sales</Link>
-          
+          <Link to="/team-sidebar/" className="menu-item">Team Members</Link>
+          <Link to="/team-sidebar/sheduled-shifts" className="menu-item">Sheduled Shifts</Link>
+          <Link to="/team-sidebar/time-sheets" className="menu-item">Time Sheets</Link>
 
-          <Link to="/sales-sidebar/payments" className="menu-item">Payments</Link>
-          <Link to="/sales-sidebar/gift-cards" className="menu-item">Gift cards sold</Link>
-          <Link to="/sales-sidebar/membership" className="menu-item">Memberships sold</Link>
         </div>      </div>
     </>
   );
 };
 
-export default SecondDashboard;
+export default TeamSideBar;

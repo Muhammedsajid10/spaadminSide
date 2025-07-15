@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ChevronDown,
   Search,
@@ -12,6 +12,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import "jspdf-autotable";
 import "./Appoint.css";
+import api from "../Service/Api";
 
 
 // Export Functions
@@ -74,7 +75,8 @@ const exportToExcel = (data) => {
 };
 
 
-const FilterPopup = ({ isOpen, onClose, onApply }) => {
+// Update FilterPopup to accept teamMembers prop
+const FilterPopup = ({ isOpen, onClose, onApply, teamMembers }) => {
   const [teamMember, setTeamMember] = useState("");
   const [status, setStatus] = useState("");
 
@@ -101,13 +103,9 @@ const FilterPopup = ({ isOpen, onClose, onApply }) => {
             onChange={(e) => setTeamMember(e.target.value)}
           >
             <option value="">All Team Members</option>
-            <option value="Margirita">Margirita</option>
-            <option value="icha">icha</option>
-            <option value="onnie">onnie</option>
-            <option value="Ninning">Ninning</option>
-            <option value="Putri">Putri</option>
-            <option value="Employee">Employee</option>
-            <option value="Sarita">Sarita</option>
+            {teamMembers && teamMembers.map((member) => (
+              <option key={member._id} value={member.name}>{member.name}</option>
+            ))}
           </select>
         </div>
         <div className="filter-group">
@@ -282,7 +280,7 @@ const DateRangePicker = ({ isOpen, onClose, onApply, currentDateFilter }) => {
           <h2>Date range</h2>
           <div className="date-range-dropdown">
             <select className="month-dropdown">
-              <option>Month to date</option>
+              <option>Month to date</option>  
               <option>Last 7 days</option>
               <option>Last 30 days</option>
               <option>Custom range</option>
@@ -338,135 +336,66 @@ const Appoint = () => {
   const [showExportMenu, setShowExportMenu] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showFilterPopup, setShowFilterPopup] = useState(false);
+  const [showSortMenu, setShowSortMenu] = useState(false);
+  const [appointments, setAppointments] = useState([]);
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [teamMembers, setTeamMembers] = useState([]);
 
-  const appointments = [
-    {
-      ref: "#8EB6FB9C",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "19 Jun 2025, 22:31",
-      scheduledDate: "21 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 250.00",
-      status: "New",
-    },
-    {
-      ref: "#DFA4C2CC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "19 Jun 2025, 13:32",
-      scheduledDate: "20 Jun 2025, 16:55",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-    {
-      ref: "#CE8C37CB",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "20 Jun 2025, 19:46",
-      scheduledDate: "20 Jun 2025, 16:15",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 300.00",
-      status: "New",
-    },
-    {
-      ref: "#9449CFCC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "20 Jun 2025, 16:46",
-      scheduledDate: "20 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-    {
-      ref: "#8EB6FB9C",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "29 Jun 2025, 22:31",
-      scheduledDate: "31 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 250.00",
-      status: "New",
-    },
-    {
-      ref: "#DFA4C2CC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "29 Jun 2025, 13:32",
-      scheduledDate: "30 Jun 2025, 16:55",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-    {
-      ref: "#CE8C37CB",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "21 Jun 2025, 19:46",
-      scheduledDate: "30 Jun 2025, 16:15",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 300.00",
-      status: "New",
-    },
-    {
-      ref: "#9449CFCC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "24 Jun 2025, 16:46",
-      scheduledDate: "29 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-    {
-      ref: "#8EB6FB9C",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "9 Jun 2025, 22:31",
-      scheduledDate: "23 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 250.00",
-      status: "New",
-    },
-    {
-      ref: "#DFA4C2CC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "17 Jun 2025, 13:32",
-      scheduledDate: "22 Jun 2025, 16:55",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-    {
-      ref: "#CE8C37CB",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "25 Jun 2025, 19:46",
-      scheduledDate: "29 Jun 2025, 16:15",
-      duration: "1h",
-      teamMember: "Dayu Eka",
-      price: "AED 300.00",
-      status: "New",
-    },
-    {
-      ref: "#9449CFCC",
-      createdBy: "Allora Spa Dubai",
-      createdDate: "26 Jun 2025, 16:46",
-      scheduledDate: "30 Jun 2025, 15:30",
-      duration: "1h",
-      teamMember: "Employee",
-      price: "AED 200.00",
-      status: "Completed",
-    },
-  ];
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        // Update endpoint if your actual endpoint differs
+        const res = await api.get("/bookings/admin/all");
+        const bookings = res.data.data.bookings || [];
+        // Map backend data to frontend structure
+        const mapped = bookings.map((b) => {
+          const service = b.services && b.services[0] ? b.services[0] : {};
+          return {
+            ref: b.bookingNumber || b._id,
+            createdBy: b.createdByName || (b.client ? `${b.client.firstName || ''} ${b.client.lastName || ''}` : "Unknown"),
+            createdDate: b.createdAt ? new Date(b.createdAt).toLocaleString() : "-",
+            scheduledDate: b.appointmentDate ? new Date(b.appointmentDate).toLocaleString() : "-",
+            duration: service.duration ? `${service.duration}m` : "-",
+            teamMember:
+              service.employee && service.employee.user
+                ? `${service.employee.user.firstName || ""} ${service.employee.user.lastName || ""}`.trim() || "-"
+                : "-",
+            price: service.price ? `AED ${service.price.toFixed(2)}` : (b.finalAmount ? `AED ${b.finalAmount.toFixed(2)}` : "-"),
+            status: b.status ? b.status.charAt(0).toUpperCase() + b.status.slice(1) : "-",
+          };
+        });
+        setAppointments(mapped);
+        setFilteredAppointments(mapped);
+      } catch (err) {
+        setError("Failed to load appointments. Please try again.");
+        setAppointments([]);
+        setFilteredAppointments([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAppointments();
 
-  const [filteredAppointments, setFilteredAppointments] =
-    useState(appointments);
-
-
-    const [showSortMenu, setShowSortMenu] = useState(false);
+    // Fetch team members (employees)
+    const fetchTeamMembers = async () => {
+      try {
+        const res = await api.get("/employees");
+        const employees = res.data.data.employees || [];
+        const mapped = employees.map(emp => ({
+          _id: emp._id,
+          name: emp.user ? `${emp.user.firstName || ''} ${emp.user.lastName || ''}`.trim() : emp.employeeId || 'Unknown'
+        }));
+        setTeamMembers(mapped);
+      } catch (err) {
+        setTeamMembers([]);
+      }
+    };
+    fetchTeamMembers();
+  }, []);
 
   const handleSearch = (value) => {
     setSearchTerm(value);
@@ -731,6 +660,16 @@ const Appoint = () => {
                 </tr>
               </thead>
               <tbody className="data-table-body">
+                {loading && (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: "center" }}>Loading appointments...</td>
+                  </tr>
+                )}
+                {error && (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: "center", color: "red" }}>{error}</td>
+                  </tr>
+                )}
                 {filteredAppointments.map((appointment, index) => (
                   <tr key={index} className="data-row-item">
                     <td className="data-cell-content">
@@ -773,6 +712,12 @@ const Appoint = () => {
         {/* Mobile Cards */}
         <div className="mobile-card-layout">
           <div className="card-list-container">
+            {loading && (
+              <div style={{ textAlign: "center", margin: "2rem" }}>Loading appointments...</div>
+            )}
+            {error && (
+              <div style={{ color: "red", textAlign: "center", margin: "2rem" }}>{error}</div>
+            )}
             {filteredAppointments.map((appointment, index) => (
               <div key={index} className="schedule-card-item">
                 <div className="card-top-section">
@@ -822,7 +767,7 @@ const Appoint = () => {
           </div>
         </div>
 
-        {filteredAppointments.length === 0 && (
+        {filteredAppointments.length === 0 && !loading && !error && (
           <div className="no-results-state">
             <p className="no-results-message">
               No appointments found matching your criteria.
@@ -844,6 +789,7 @@ const Appoint = () => {
         isOpen={showFilterPopup}
         onClose={() => setShowFilterPopup(false)}
         onApply={handleFilterApply}
+        teamMembers={teamMembers}
       />
     </div>
   );

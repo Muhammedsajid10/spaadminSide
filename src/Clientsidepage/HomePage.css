@@ -1,0 +1,29 @@
+.first-row {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 100px);
+    padding: 2rem;
+    gap: 1rem;
+}
+
+
+.recent-sales {
+    width: 80%;
+    min-width: 50%;
+    height: 100%;
+    flex: 0 0 35%;
+}
+.home-page-content {
+     display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-left: 120px;
+  width: 100%;
+}
+
+.upcoming-appointments {
+    width: 50%;
+    min-width: 50%;
+    height: 100%;
+    flex: 0 0 35%;
+}

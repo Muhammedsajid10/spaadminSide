@@ -1,33 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaHome,
   FaCalendarAlt,
-  FaTags,
-  FaSmile,
-  FaBook,
-  FaImage,
-  FaBullhorn,
-  FaUsers,
-  FaChartLine,
+  FaUserFriends,
+  FaUserTie,
+  FaGift,
+  FaIdCard,
+  FaListAlt,
+  FaClipboardList,
+  FaCrown,
+  FaDollarSign,
+  FaMoneyBill,
+  FaLayerGroup,
+  FaTachometerAlt,
+  FaCalendarCheck,
+  FaChartBar,
   FaThLarge,
+  FaTh,
+  FaBars,
+  FaSmile,
+  FaSalesforce,
 } from "react-icons/fa";
 import "./Firstdashboard.css";
 
 const Sidenavbar = () => {
-  const [active, setActive] = useState(2);
 
   const menuItems = [
     { icon: <FaHome />, label: "Home", to: "/" },
-    { icon: <FaCalendarAlt />, label: "Calendar", to: "/calendar" },
-    { icon: <FaTags />, label: "Tags", to: "/tags" },
-    { icon: <FaSmile />, label: "Smile", to: "/smile" },
-    { icon: <FaBook />, label: "Book", to: "/book" },
-    { icon: <FaImage />, label: "Images", to: "/images" },
-    { icon: <FaBullhorn />, label: "Announcements", to: "/announcements" },
-    { icon: <FaUsers />, label: "Users", to: "/users" },
-    { icon: <FaChartLine />, label: "Analytics", to: "/analytics" },
-    { icon: <FaThLarge />, label: "Apps", to: "/apps" },
+    { icon: <FaCalendarAlt />, label: "Dashboard", to: "/calendar" },
+
+    { icon: <FaSalesforce />, label: "Dashboard", to: "/sales-sidebar" },
+
+    { icon: <FaUserFriends />, label: "Appointments", to: "/clients-list" },
+    { icon: <FaUserTie />, label: "Team Members", to: "/catalog-sidebar" },
+    { icon: <FaGift />, label: "Gift Cards", to: "/team-sidebar" },
+    { icon: <FaIdCard />, label: "Membership", to: "/dashboard" },
+
   ];
 
   return (
@@ -37,12 +46,12 @@ const Sidenavbar = () => {
           to={item.to}
           key={index}
           className={({ isActive }) =>
-            `sb-icon-wrapper ${isActive || active === index ? "sb-active" : ""}`
+            `sb-icon-wrapper${isActive ? " sb-active" : ""}`
           }
-          onClick={() => setActive(index)}
           title={item.label}
         >
           <span className="sb-icon">{item.icon}</span>
+       
         </NavLink>
       ))}
     </div>
