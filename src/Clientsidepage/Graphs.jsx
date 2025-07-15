@@ -89,7 +89,7 @@ const Graphs = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="dashboard-container">
+    <div>
       <div className="card">
         <div className="card-header">
           <h3>Recent sales</h3>
