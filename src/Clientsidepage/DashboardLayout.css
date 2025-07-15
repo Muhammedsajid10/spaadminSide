@@ -1,7 +1,7 @@
 .dashboard-container {
-  min-height: 100vh;
+  display: flex;
   width: 100%;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .layout-nav-bar {
@@ -23,16 +23,34 @@
 
 .main-content {
   flex: 1;
-  margin-left: 80px; /* Width of main sidebar */
-  padding: 20px;
-  /* width: 100%; */
-  padding-left: 0px;
-  /* margin-left: 11px; */
-    /* Width of main sidebar */
+  padding: 1rem;
+  overflow-x: hidden;
 }
 
 /* Sales sidebar specific styles */
 .sales-content {
   margin-left: 10px; 
   
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100% !important;
+    height: auto;
+    position: static !important;
+  }
+
+  .main-content {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.25rem;
+  }
 }

@@ -1,46 +1,28 @@
 .top-stats-container {
   display: flex;
-  width: 100%;
-  height: calc(100vh - 100px);
-  gap: 2rem;
-  padding: 2rem;
-  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
 }
 
 /* Card Style Matching Graphs and Appointments */
 .stats-card {
-  width: 50%;
-  height: 100%;
   background-color: #fff;
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  flex: 1 1 450px;   /* Minimum width for responsive layout */
+  max-width: 680px;  /* Match card width in Graphs */
+  min-width: 280px;
 }
 
 /* Title */
 .stats-title {
-  position: sticky;
-  top: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin: 0;
-  padding: 1rem 0;
+  margin-bottom: 1rem;
   color: #333;
-  background: white;
-  z-index: 10;
-}
-
-.stats-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
 }
 
 /* Table Layout */
@@ -48,8 +30,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
-  flex: 1;
 }
 
 /* Header and Data Rows */
@@ -78,94 +58,33 @@
   border-right: none;
 }
 
-/* Scrollbar Styling */
-.stats-card::-webkit-scrollbar {
-  width: 6px;
-}
-
-.stats-card::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
-}
-
 /* Responsive Behavior */
-@media (max-width: 1200px) {
-  .top-stats-container {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-  
-  .stats-title {
-    font-size: 1.4rem;
-  }
-  
-  .stats-cell {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 992px) {
-  .top-stats-container {
-    padding: 1.25rem;
-    gap: 1.25rem;
-  }
-  
-  .stats-title {
-    font-size: 1.3rem;
-    padding: 0.75rem 0;
-  }
-  
-  .stats-cell {
-    font-size: 15px;
-  }
-}
-
 @media (max-width: 768px) {
   .top-stats-container {
     flex-direction: column;
-    height: auto;
-    padding: 1rem;
-    gap: 1rem;
-  }
-  
-  .stats-card {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    padding: 1rem;
-  }
-  
-  .stats-title {
-    font-size: 1.2rem;
-  }
-  
-  .stats-row {
-    padding: 8px 0;
-  }
-  
-  .stats-cell {
-    font-size: 14px;
-    padding: 0 6px;
+    align-items: center;
   }
 }
 
-@media (max-width: 576px) {
-  .top-stats-container {
-    padding: 0.75rem;
-  }
-  
-  .stats-card {
-    max-height: 350px;
-    padding: 0.75rem;
-  }
-  
-  .stats-title {
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-  }
-  
-  .stats-cell {
-    font-size: 13px;
-    padding: 0 4px;
+.top-service-container {
+  height: 100%;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.service-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .top-service-container {
+    padding: 1rem;
   }
 }

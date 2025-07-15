@@ -27,3 +27,46 @@
   height: 300px;
   flex-grow: 1;
 }
+
+.upcoming-appointments {
+  height: 100%;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.appointment-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Ensure scrollbar looks good */
+.appointment-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.appointment-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.appointment-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.appointment-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 768px) {
+  .upcoming-appointments {
+    padding: 1rem;
+  }
+}

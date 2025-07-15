@@ -1,171 +1,170 @@
 import React, { useState } from 'react';
-import { 
-  ChevronLeft, 
-  Search, 
-  Calendar, 
-  Filter, 
-  ChevronDown, 
-  ArrowUpDown,
-  MoreHorizontal 
-} from 'lucide-react';
-import './Timesheets.css';
+import { Search, Calendar, MoreHorizontal, Plus, ChevronDown, BarChart3 } from 'lucide-react';
+import './TimeSheets.css'; // Updated to match the correct file name
 
-const Timesheets = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+const TimesheetApp = () => {
   const [selectedWeek, setSelectedWeek] = useState('This week');
-  const [sortBy, setSortBy] = useState('Date (newest first)');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const timesheetData = [
     {
       id: 1,
-      name: 'Icha Faradisa',
-      initials: 'IF',
-      location: 'Ailore Spa and Massage Centre Dubai',
+      initials: 'JF',
+      name: 'John Fernandez',
+      role: 'Junior Software Manager',
+      team: 'Centre Dubai',
       date: 'Fri, 4 Jul 2025',
-      clockIn: '11:39',
-      clockOut: null,
+      clockIn: '11:30',
+      clockOut: '-',
       breaks: '-',
       hoursWorked: '-',
-      status: 'Clocked in',
-      statusType: 'active'
+      status: 'Clocked In',
+      statusColor: 'blue'
     },
     {
       id: 2,
-      name: 'Dayu Eka',
       initials: 'DE',
-      location: 'Ailore Spa and Massage Centre Dubai',
+      name: 'Dani Elsa',
+      role: 'Senior Software Manager',
+      team: 'Centre Dubai',
       date: 'Thu, 3 Jul 2025',
       clockIn: '12:00',
       clockOut: '21:00',
       breaks: '-',
-      hoursWorked: '11h',
+      hoursWorked: '9h',
       status: 'Clocked out',
-      statusType: 'completed'
+      statusColor: 'green'
+    },
+    {
+      id: 3,
+      initials: 'JF',
+      name: 'John Fernandez',
+      role: 'Junior Software Manager',
+      team: 'Centre Dubai',
+      date: 'Thu, 3 Jul 2025',
+      clockIn: '11:45',
+      clockOut: '00:30',
+      breaks: '-',
+      hoursWorked: '12h 35min',
+      status: 'Clocked out',
+      statusColor: 'green'
     }
   ];
 
   const filteredData = timesheetData.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.location.toLowerCase().includes(searchTerm.toLowerCase())
+    item.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getAvatarColor = (initials) => {
-    const colors = {
-      'IF': '#e0e7ff',
-      'DE': '#dcfce7'
-    };
-    return colors[initials] || '#f3f4f6';
+  const handleWeekChange = () => {
+    // Add week selection logic here
+    console.log('Week selection clicked');
   };
 
-  const getStatusStyle = (statusType) => {
-    const styles = {
-      'active': {
-        backgroundColor: '#dbeafe',
-        color: '#1e40af',
-        border: '1px solid #3b82f6'
-      },
-      'completed': {
-        backgroundColor: '#dcfce7',
-        color: '#166534',
-        border: '1px solid #16a34a'
-      }
-    };
-    return styles[statusType] || styles.completed;
+  const handleOptionsClick = () => {
+    // Add options logic here
+    console.log('Options clicked');
+  };
+
+  const handleAddClick = () => {
+    // Add new timesheet entry logic here
+    console.log('Add clicked');
   };
 
   return (
-    <div className="timesheets-container">
-      {/* Header */}
-      <div className="timesheets-header">
-        <div className="header-left">
-        
-          <div className="header-content">
-            <h1>Timesheets</h1>
-            <p>Manage your team members' timesheets</p>
-          </div>
+    <div className="timesheet-main-wrapper">
+      <div className="timesheet-header-section">
+        <div className="timesheet-title-group">
+          <h1>Timesheets</h1>
+          <p>Manage your team members' timesheets</p>
         </div>
-        <div className="header-actions">
-          <button className="options-btn">
-            Options <ChevronDown size={16} />
+        <div className="timesheet-action-buttons">
+          <button className="timesheet-options-button" onClick={handleOptionsClick}>
+            <span>Options</span>
+            <ChevronDown size={16} />
           </button>
-          <button className="add-btn">
-            Add
+          <button className="timesheet-add-button" onClick={handleAddClick}>
+            <Plus size={16} />
+            <span>Add</span>
           </button>
         </div>
       </div>
 
-      {/* Search and Filters */}
-      <div className="search-filter-bar">
-        <div className="search-section">
-          <div className="search-input-wrapper">
-            <Search className="search-icon" size={18} />
+      <div className="timesheet-controls-panel">
+        <div className="timesheet-controls-left">
+          <div className="timesheet-search-wrapper">
+            <Search className="timesheet-search-icon" size={16} />
             <input
               type="text"
               placeholder="Search"
+              className="timesheet-search-field"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
             />
           </div>
-          <button className="week-filter-btn">
+          <div className="timesheet-week-picker" onClick={handleWeekChange}>
             <Calendar size={16} />
-            {selectedWeek}
-          </button>
-          <button className="filter-btn">
-            <Filter size={16} />
-          </button>
+            <span>{selectedWeek}</span>
+            <ChevronDown size={16} />
+          </div>
         </div>
-        <button className="sort-btn">
-          <ArrowUpDown size={16} />
-          {sortBy}
-        </button>
+        <div className="timesheet-data-toggle">
+          <BarChart3 size={16} />
+          <span>Data interest first</span>
+        </div>
       </div>
 
-      {/* Table */}
-<div className="timesheets-table-container">
-  <table className="timesheets-table">
-    <thead>
-      <tr>
-        <th className="team-member-col">Team member</th>
-        <th className="date-col">Date <ChevronDown size={14} /></th>
-        <th className="clock-col">Clock in/out <ChevronDown size={14} /></th>
-        <th className="breaks-col">Breaks <ChevronDown size={14} /></th>
-        <th className="hours-col">Hours worked</th>
-        <th className="status-col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {filteredData.map((item) => (
-        <tr key={item.id} className="table-row">
-          <td className="team-member-cell">
-            <div className="member-info">
-              <div className="avatar" style={{ backgroundColor: getAvatarColor(item.initials) }}>
-                {item.initials}
-              </div>
-              <div className="member-details">
-                <div className="member-name">{item.name}</div>
-                <div className="member-location">{item.location}</div>
-              </div>
-            </div>
-          </td>
-          <td className="date-cell">{item.date}</td>
-          <td className="clock-cell">
-            {item.clockOut ? `${item.clockIn} - ${item.clockOut}` : item.clockIn}
-          </td>
-          <td className="breaks-cell">{item.breaks}</td>
-          <td className="hours-cell">{item.hoursWorked}</td>
-          <td className="status-cell">
-            <span className="status-badge" style={getStatusStyle(item.statusType)}>
-              {item.status}
-            </span>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+      <div className="timesheet-table-wrapper">
+        <table className="timesheet-data-table">
+          <thead className="timesheet-table-head">
+            <tr>
+              <th>Team member</th>
+              <th>Date</th>
+              <th>Clock in/out</th>
+              <th>Breaks</th>
+              <th>Hours worked</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id} className="timesheet-table-row">
+                <td className="timesheet-table-cell">
+                  <div className="timesheet-member-info">
+                    <div className="timesheet-member-avatar">
+                      {item.initials}
+                    </div>
+                    <div className="timesheet-member-details">
+                      <h4>{item.name}</h4>
+                      <p>{item.role}</p>
+                      <p>{item.team}</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="timesheet-table-cell">{item.date}</td>
+                <td className="timesheet-table-cell">
+                  {item.clockOut === '-' ? item.clockIn : `${item.clockIn} - ${item.clockOut}`}
+                </td>
+                <td className="timesheet-table-cell">{item.breaks}</td>
+                <td className="timesheet-table-cell">{item.hoursWorked}</td>
+                <td className="timesheet-table-cell">
+                  <span className={`timesheet-status-badge timesheet-status-${item.statusColor}`}>
+                    {item.status}
+                  </span>
+                </td>
+                <td className="timesheet-table-cell">
+                  <div className="timesheet-more-actions">
+                    <MoreHorizontal size={16} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
 
-export default Timesheets;
+export default TimesheetApp;

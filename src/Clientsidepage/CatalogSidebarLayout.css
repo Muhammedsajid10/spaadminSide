@@ -18,12 +18,12 @@
 /* Catalog content styles */
 .catalog-content {
     flex: 1;
-    margin-left: 400px; /* 80px main sidebar + 300px catalog sidebar */
+    margin-left: 140px; /* 80px main sidebar + 300px catalog sidebar */
     padding: 20px 24px 20px 0;
     box-sizing: border-box;
     transition: margin-left 0.3s ease;
     width: calc(100% - 380px); /* Add this to ensure proper width */
-    margin-top: 50px;
+    /* margin-top: 50px;   */
 }
 
 .toggle-button:hover {
@@ -60,11 +60,11 @@
 
 /* Sidebar container */
 .catalog-container {
-  width: 300px;
+  width: 170px;
   background-color: #ffffff;
   height: calc(100vh - 64px);
   position: fixed;
-  left: 120px; /* Fix from 100px to 80px to align with main sidebar */
+  left: 60px; /* Fix from 100px to 80px to align with main sidebar */
   top: 64px;
   border-right: 1px solid #f0f0f0;
   overflow-y: auto;
@@ -73,7 +73,10 @@
   opacity: 1;
   visibility: visible;
 }
-
+.catalog-heading{
+  font-size: 30px;
+  font-weight: 600;
+}
 .catalog-container.hidden {
   opacity: 0;
   visibility: hidden;

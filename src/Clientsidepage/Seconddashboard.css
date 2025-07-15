@@ -8,12 +8,12 @@
 }
 /* Sales sidebar styles */
 .sales-container {
-  width: 400px;
+  width: 170px;
   background-color: #ffffff;
   height: calc(100vh - 64px);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   position: fixed;
-  left: 80px; /* Space for main sidebar */
+  left: 10px; /* Space for main sidebar */
   top: 64px;
   border-right: 1px solid #f0f0f0;
   overflow-y: auto;
@@ -81,7 +81,7 @@
 
 .menu-item {
   padding: 16px 24px;
-  font-size: 18px;
+  font-size: 13px;
   color: #333333;
   cursor: pointer;
   border-bottom: 1px solid #f0f0f0;

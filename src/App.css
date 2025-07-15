@@ -42,8 +42,94 @@
 } */
 
 .app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
+}
+
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px; /* Adjust based on your navbar height */
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  margin-top: 64px; /* Same as navbar height */
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Layout with sidebar */
+.layout-with-sidebar {
+  display: flex;
+  height: calc(100vh - 64px); /* Viewport height minus navbar height */
+  width: 100%;
+}
+
+/* Sidebar styles */
+.catalog-sidebar,
+.sales-sidebar,
+.team-sidebar {
+  width: 250px; /* Constant width for sidebars */
+  min-width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid #eee;
+  position: fixed;
+  left: 0;
+  top: 64px; /* Below navbar */
+}
+
+/* Content area with margin for sidebar */
+.content-with-margin {
+  margin-left: 250px; /* Same as sidebar width */
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  min-height: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .catalog-sidebar,
+  .sales-sidebar,
+  .team-sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .content-with-margin {
+    margin-left: 200px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-with-sidebar {
+    flex-direction: column;
+  }
+
+  .catalog-sidebar,
+  .sales-sidebar,
+  .team-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .content-with-margin {
+    margin-left: 0;
+    padding: 1rem 0.5rem;
+  }
 }

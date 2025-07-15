@@ -261,10 +261,12 @@ const Reporting = () => {
           <h1 className="page-title">
             Reporting and analytics 
             <span className="report-count">
-              {/* {searchTerm ? filteredReports.length : totalReportsCount} */}
+              {searchTerm ? filteredReports.length : totalReportsCount}
             </span>
           </h1>
-      
+          <p className="page-subtitle">
+            Access all of your Fresha reports. <a href="#" className="learn-more">Learn more</a>
+          </p>
         </div>
         <button className="add-button">Add</button>
       </div>

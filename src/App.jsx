@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Appoint from "./Clientsidepage/Appoint";
 import Teammembers from "./Clientsidepage/Teammembers";
-import Giftcards from "./Clientsidepage/Giftcards";
+import Giftcards from "./Clientsidepage/Giftcard";
 import Membership from "./Clientsidepage/Membership";
 import ClientsList from "./Clientsidepage/Clientlist";
 import Todayandbody from "./Clientsidepage/Todayandbody";
@@ -34,49 +34,77 @@ import Timesheets from "./Clientsidepage/TimeSheets";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<HomePage />} />
+      <div className="app-container">
+        <Navbar className="fixed-navbar" />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<DashboardLayout />}>
+              <Route index element={<HomePage />} />
 
-          <Route path="/calendar" element={<Scheduler />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appoint />} />
-          <Route path="/gift-cards" element={<Giftcards />} />
-          <Route path="/membership" element={<Membership />} />
-          <Route path="/clients-list" element={<ClientsList />} />
-          <Route path="/members" element={<Memberss />} />
-          <Route path="/daily-sales" element={<Dailysalesss />} />
-          <Route path="/payment-client" element={<Paymentclient />} />
-          <Route path="/sales-page" element={<SalesPage />} />
-          <Route path="/scheduled-shifts" element={<Sheduledshifts />} />
-          <Route path="/select-calendar" element={<Selectcalander />} />
-          <Route path="/team-members" element={<Teammembers />} />
-          <Route path="/navbar" element={<Navbar />} />
-          <Route path="/demo" element={<Demo />} />
-        </Route>
+              <Route path="/calendar" element={<Scheduler />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/appointments" element={<Appoint />} />
+              <Route path="/gift-cards" element={<Giftcards />} />
+              <Route path="/membership" element={<Membership />} />
+              <Route path="/clients-list" element={<ClientsList />} />
+              <Route path="/members" element={<Memberss />} />
+              <Route path="/daily-sales" element={<Dailysalesss />} />
+              <Route path="/payment-client" element={<Paymentclient />} />
+              <Route path="/sales-page" element={<SalesPage />} />
+              <Route path="/scheduled-shifts" element={<Sheduledshifts />} />
+              <Route path="/select-calendar" element={<Selectcalander />} />
+              <Route path="/team-members" element={<Teammembers />} />
+              <Route path="/navbar" element={<Navbar />} />
+              <Route path="/demo" element={<Demo />} />
+            </Route>
 
-        {/* SALES SIDEBAR: Only on /sales-sidebar */}
-        <Route path="/sales-sidebar" element={<SalesSidebarLayout />}>
-          <Route index element={<Dailysalesss />} />
-          <Route path="appointments" element={<Appoint />} />
-          <Route path="sales-page" element={<SalesPage />} />
+            {/* Catalog sidebar with constant width */}
+            <Route path="/catalog-sidebar" element={
+              <div className="layout-with-sidebar">
+                <CatalogSidebarLayout />
+                <div className="content-with-margin">
+                  <Routes>
+                    <Route index element={<ServiceMenu />} />
+                    <Route path="memberships" element={<Memberss />} />
+                    <Route path="sales-page" element={<SalesPage />} />
+                  </Routes>
+                </div>
+              </div>
+            } />
 
-          <Route path="payments" element={<Paymentclient />} />
-          <Route path="gift-cards" element={<Giftcards />} />
-          <Route path="membership" element={<Membership />} />
-        </Route>
-        <Route path="/catalog-sidebar" element={<CatalogSidebarLayout />}>
-          <Route index element={<ServiceMenu />} />
-          <Route path="memberships" element={<Membership />} />
-          <Route path="sales-page" element={<SalesPage />} />
-        </Route>
-        <Route path="/team-sidebar" element={<TeamSideBarLayout />}>
-          <Route index element={<Teammembers />} />
-          <Route path="sheduled-shifts" element={<Sheduledshifts />} />
-          <Route path="time-sheets" element={<Timesheets />} />
+            {/* SALES SIDEBAR: Only on /sales-sidebar */}
+            <Route path="/sales-sidebar" element={
+              <div className="layout-with-sidebar">
+                <SalesSidebarLayout />
+                <div className="content-with-margin">
+                  <Routes>
+                    <Route index element={<Dailysalesss />} />
+                    <Route path="appointments" element={<Appoint />} />
+                    <Route path="sales-page" element={<SalesPage />} />
 
-        </Route>
-      </Routes>
+                    <Route path="payments" element={<Paymentclient />} />
+                    <Route path="gift-cards" element={<Giftcards />} />
+                    <Route path="membership" element={<Membership />} />
+                  </Routes>
+                </div>
+              </div>
+            } />
+            <Route path="/team-sidebar" element={
+              <div className="layout-with-sidebar">
+                <TeamSideBarLayout />
+                <div className="content-with-margin">
+                  <Routes>
+                    <Route index element={<Teammembers />} />
+                    <Route path="sheduled-shifts" element={<Sheduledshifts />} />
+                    <Route path="time-sheets" element={<Timesheets />} />
+
+                  </Routes>
+                </div>
+              </div>
+            } />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }

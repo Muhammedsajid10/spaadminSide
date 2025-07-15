@@ -585,8 +585,6 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding-left: 0px;
-  margin-left: 0px;
 }
 
 .scheduler-header-wrapper {
@@ -961,6 +959,7 @@
   
   .time-slot.hour-start {
     font-size: 10px;
+    
   }
 }
 
@@ -1168,4 +1167,58 @@
 .tooltip-calendar-icon {
   font-size: 16px;
 }
+ 
 
+/* ------- */
+
+
+.quick-actions-box {
+  border: 1px solid #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+}
+
+.quick-actions-time {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.quick-action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  width: 100%;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.quick-action-button:hover {
+  background-color: #eef6ff;
+  border-color: #2a7be4;
+  color: #2a7be4;
+}
+
+.quick-actions-settings {
+  background: none;
+  border: none;
+  color: #090909;
+  font-size: 13px;
+  text-align: left;
+  padding: 6px 2px;
+  cursor: pointer;
+}
+
+.quick-actions-settings:hover {
+  text-decoration: underline;
+}

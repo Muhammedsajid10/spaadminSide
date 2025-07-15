@@ -10,29 +10,25 @@ import './HomePage.css';
 
 const HomePage = () => {
   return (
-    <div>
- <div className="first-row">
-          <div className="recent-sales">
-            <Graphs />
-          </div>
-          <div className="upcoming-appointments">
-            <UpcomingAppoinments />
+    <div className="home-page-container">
+      <div className="dashboard-row">
+        <div className="dashboard-col">
+          <Graphs />
         </div>
-      
-      </div>
-       <div className="first-row">
-        <AppointmentsRedesign />
-      
-      </div>
-       <div className="first-row">
-        <TopService />
-      
-      </div>
-      
+        <div className="dashboard-col">
+          <UpcomingAppoinments />
+        </div>
       </div>
 
-    
-   
+      <div className="dashboard-row">
+        <div className="dashboard-col">
+          <AppointmentsRedesign />
+        </div>
+        <div className="dashboard-col">
+          <TopService />
+        </div>
+      </div>
+    </div>
   );
 };
 

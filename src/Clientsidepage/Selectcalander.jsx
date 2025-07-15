@@ -334,12 +334,14 @@ const generateTimeSlots = () => {
   const slots = [];
   for (let hour = 11; hour < 21; hour++) {
     for (let minute = 0; minute < 60; minute += 15) {
-      const timeStr = `${hour < 10 ? "0" + hour : hour}:${minute < 10 ? "0" + minute : minute}`;
+      const timeStr = `${hour < 10 ? "0" + hour : hour}:${
+        minute < 10 ? "0" + minute : minute
+      }`;
       slots.push({
         time: timeStr,
         isHourStart: minute === 0,
         hour: hour,
-        minute: minute
+        minute: minute,
       });
     }
   }
@@ -378,7 +380,7 @@ const Scheduler = () => {
   });
 
   const [activeWaitlistTab, setActiveWaitlistTab] = useState("Booked");
-  const [waitlistVisible,setWaitlistVisible] = useState(false);
+  const [waitlistVisible, setWaitlistVisible] = useState(false);
 
   const popupRef = useRef();
   const tooltipRef = useRef();
@@ -400,14 +402,17 @@ const Scheduler = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const [quickPopupOpen, setQuickPopupOpen] = useState(false);
+
   const currentHour = currentTime.getHours();
   const currentMinute = currentTime.getMinutes();
   const currentTimeStr = `${currentHour}:${
     currentMinute < 10 ? "0" + currentMinute : currentMinute
   }`;
-  
+
   // Calculate current time position for 15-minute intervals
-  const currentTimePosition = ((currentHour - 11) * 4 + Math.floor(currentMinute / 15)) * 15;
+  const currentTimePosition =
+    ((currentHour - 11) * 4 + Math.floor(currentMinute / 15)) * 15;
 
   // Format selected date for display
   const formatSelectedDate = (date) => {
@@ -479,11 +484,13 @@ const Scheduler = () => {
     const key = `${staffIndex}-${timeIndex}`;
     const appointment = appointments[key];
     const rect = e.target.getBoundingClientRect();
+    const time = timeSlots[timeIndex].time;
 
     setPopupData({
       key,
       x: rect.left + window.scrollX,
       y: rect.top + window.scrollY,
+      time, // 👈 include time string like "02:30"
       clientName: appointment?.clientName || "",
       service: appointment?.service || "",
       paymentMethod: appointment?.paymentMethod || "",
@@ -494,19 +501,25 @@ const Scheduler = () => {
     setHoverTooltip({ visible: false, x: 0, y: 0, content: null });
   };
 
+  // Find this function within your Scheduler component
   const handleCellHover = (staffIndex, timeIndex, e, appointment) => {
-    if (!popupVisible) {
+    // --- KEY CHANGE IS HERE ---
+    // Only proceed to show the tooltip if there is an appointment in the cell.
+    if (appointment && !popupVisible) {
       const rect = e.target.getBoundingClientRect();
       const staff = staffList[staffIndex];
       const timeSlot = timeSlots[timeIndex];
 
-      // Generate specific details for each time slot
+      // The existing logic to generate tooltip content remains the same.
+      // This content is now guaranteed to be for a real appointment.
       const specificDetails = {
-        clientName: appointment?.clientName || `Client ${timeIndex + 1}`,
-        service: appointment?.service || getServiceForTimeSlot(timeIndex),
-        paymentMethod: appointment?.paymentMethod || getPaymentMethodForTimeSlot(timeIndex),
+        clientName: appointment.clientName, // Directly use appointment data
+        service: appointment.service, // Directly use appointment data
+        paymentMethod: appointment.paymentMethod, // Directly use appointment data
         staff: staff.name,
         time: timeSlot.time,
+        // You can add more details to your appointment object if needed
+        // For now, we'll use placeholder data for fields not in the appointment object
         phone: getPhoneForTimeSlot(timeIndex),
         duration: getDurationForTimeSlot(timeIndex),
         price: getPriceForTimeSlot(timeIndex),
@@ -530,9 +543,16 @@ const Scheduler = () => {
   // Helper functions to generate specific details for each time slot
   const getServiceForTimeSlot = (timeIndex) => {
     const services = [
-      "Relaxing Massage", "Deep Tissue Massage", "Hot Stone Therapy", 
-      "Facial Treatment", "Manicure & Pedicure", "Hair Styling",
-      "Body Scrub", "Aromatherapy", "Swedish Massage", "Reflexology"
+      "Relaxing Massage",
+      "Deep Tissue Massage",
+      "Hot Stone Therapy",
+      "Facial Treatment",
+      "Manicure & Pedicure",
+      "Hair Styling",
+      "Body Scrub",
+      "Aromatherapy",
+      "Swedish Massage",
+      "Reflexology",
     ];
     return services[timeIndex % services.length];
   };
@@ -544,8 +564,12 @@ const Scheduler = () => {
 
   const getPhoneForTimeSlot = (timeIndex) => {
     const phones = [
-      "+971 50 657 2953", "+971 55 123 4567", "+971 52 987 6543",
-      "+971 56 456 7890", "+971 54 321 0987", "+971 58 765 4321"
+      "+971 50 657 2953",
+      "+971 55 123 4567",
+      "+971 52 987 6543",
+      "+971 56 456 7890",
+      "+971 54 321 0987",
+      "+971 58 765 4321",
     ];
     return phones[timeIndex % phones.length];
   };
@@ -556,12 +580,26 @@ const Scheduler = () => {
   };
 
   const getPriceForTimeSlot = (timeIndex) => {
-    const prices = ["AED 150", "AED 200", "AED 250", "AED 300", "AED 180", "AED 220"];
+    const prices = [
+      "AED 150",
+      "AED 200",
+      "AED 250",
+      "AED 300",
+      "AED 180",
+      "AED 220",
+    ];
     return prices[timeIndex % prices.length];
   };
 
   const getOriginalPriceForTimeSlot = (timeIndex) => {
-    const originalPrices = ["AED 200", "AED 280", "AED 350", "AED 410", "AED 240", "AED 300"];
+    const originalPrices = [
+      "AED 200",
+      "AED 280",
+      "AED 350",
+      "AED 410",
+      "AED 240",
+      "AED 300",
+    ];
     return originalPrices[timeIndex % originalPrices.length];
   };
 
@@ -755,11 +793,13 @@ const Scheduler = () => {
         <div className="scheduler-grid">
           <div className="time-column">
             {timeSlots.map((slot, i) => (
-              <div 
-                key={i} 
-                className={`time-slot ${slot.isHourStart ? 'hour-start' : 'quarter-hour'}`}
+              <div
+                key={i}
+                className={`time-slot ${
+                  slot.isHourStart ? "hour-start" : "quarter-hour"
+                }`}
               >
-                {slot.isHourStart ? slot.time : ''}
+                {slot.isHourStart ? slot.time : ""}
               </div>
             ))}
           </div>
@@ -777,16 +817,20 @@ const Scheduler = () => {
                     return (
                       <div
                         key={rowIdx}
-                        className={`grid-cell ${slot.isHourStart ? 'hour-start-cell' : 'quarter-hour-cell'}`}
+                        className={`grid-cell ${
+                          slot.isHourStart
+                            ? "hour-start-cell"
+                            : "quarter-hour-cell"
+                        }`}
                         style={{
                           backgroundColor: hasAppointment
                             ? staff.color
                             : "#fff",
                           border: hasAppointment
                             ? `2px solid ${staff.color}`
-                            : slot.isHourStart 
-                              ? "1px solid #f1f1f1" 
-                              : "1px solid #f1f1f1",
+                            : slot.isHourStart
+                            ? "1px solid #f1f1f1"
+                            : "1px solid #f1f1f1",
                         }}
                         onClick={(e) =>
                           handleCellClick(originalIndex, rowIdx, e)
@@ -874,30 +918,50 @@ const Scheduler = () => {
             }}
           >
             <div className="tooltip-header">
-              <span className="tooltip-time">{hoverTooltip.content.time} – {hoverTooltip.content.time}</span>
-              <span className="tooltip-status">{hoverTooltip.content.status}</span>
+              <span className="tooltip-time">
+                {hoverTooltip.content.time} – {hoverTooltip.content.time}
+              </span>
+              <span className="tooltip-status">
+                {hoverTooltip.content.status}
+              </span>
             </div>
 
             <div className="tooltip-user-info">
-              <div className="tooltip-avatar">{staffList[hoverTooltip.content.staffIndex]?.avatar}</div>
+              <div className="tooltip-avatar">
+                {staffList[hoverTooltip.content.staffIndex]?.avatar}
+              </div>
               <div className="tooltip-user-details">
-                <div className="tooltip-client-name">{hoverTooltip.content.clientName}</div>
-                <div className="tooltip-phone">{hoverTooltip.content.phone}</div>
+                <div className="tooltip-client-name">
+                  {hoverTooltip.content.clientName}
+                </div>
+                <div className="tooltip-phone">
+                  {hoverTooltip.content.phone}
+                </div>
               </div>
             </div>
 
             <div className="tooltip-service">
-              <div className="tooltip-service-name">{hoverTooltip.content.service}</div>
-              <div className="tooltip-staff-duration">{hoverTooltip.content.staff} – {hoverTooltip.content.duration}</div>
+              <div className="tooltip-service-name">
+                {hoverTooltip.content.service}
+              </div>
+              <div className="tooltip-staff-duration">
+                {hoverTooltip.content.staff} – {hoverTooltip.content.duration}
+              </div>
             </div>
 
             <div className="tooltip-price">
-              <div className="tooltip-discounted">{hoverTooltip.content.price}</div>
-              <div className="tooltip-original">{hoverTooltip.content.originalPrice}</div>
+              <div className="tooltip-discounted">
+                {hoverTooltip.content.price}
+              </div>
+              <div className="tooltip-original">
+                {hoverTooltip.content.originalPrice}
+              </div>
             </div>
 
             <div className="tooltip-footer">
-              <div className="tooltip-service-count">{hoverTooltip.content.serviceCount} services</div>
+              <div className="tooltip-service-count">
+                {hoverTooltip.content.serviceCount} services
+              </div>
               <div className="tooltip-calendar-icon">📅</div>
             </div>
           </div>
@@ -944,52 +1008,28 @@ const Scheduler = () => {
             style={{ top: popupData.y + 10, left: popupData.x + 10 }}
           >
             <h4>Appointment</h4>
-            <label>
-              Client Name:
-              <input
-                type="text"
-                value={popupData.clientName}
-                onChange={(e) =>
-                  setPopupData({ ...popupData, clientName: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Professional:
-              <input
-                type="text"
-                value={staffList[popupData.staffIndex]?.name || ""}
-                disabled
-              />
-            </label>
-            <label>
-              Service:
-              <input
-                type="text"
-                value={popupData.service}
-                onChange={(e) =>
-                  setPopupData({ ...popupData, service: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Payment Method:
-              <select
-                value={popupData.paymentMethod}
-                onChange={(e) =>
-                  setPopupData({ ...popupData, paymentMethod: e.target.value })
-                }
-              >
-                <option value="">Select</option>
-                <option value="Cash">Cash</option>
-                <option value="Card">Card</option>
-                <option value="UPI">UPI</option>
-                <option value="Online">Online</option>
-              </select>
-            </label>
-            <div className="popup-buttons">
-              <button onClick={handleSave}>Save</button>
-              <button onClick={() => setPopupVisible(false)}>Cancel</button>
+
+            <div className="quick-actions-box">
+              <div className="quick-actions-time">
+                {popupData.time || "Select time"}
+              </div>
+
+              <button className="quick-action-button">
+                <Calendar size={14} />
+                Add appointment
+              </button>
+
+              <button className="quick-action-button">
+                <Users size={14} />
+                Add group appointment
+              </button>
+
+              <button className="quick-action-button">
+                <XSquare size={14} />
+                Add blocked time
+              </button>
+
+             
             </div>
           </div>
         )}
@@ -999,4 +1039,3 @@ const Scheduler = () => {
 };
 
 export default Scheduler;
-

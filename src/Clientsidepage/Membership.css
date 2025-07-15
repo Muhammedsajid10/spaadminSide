@@ -2,13 +2,9 @@
 
 .mem-container {
   font-family: 'Inter', system-ui, sans-serif;
-  /* background-color: #f8fafc; */
+  background-color: #f8fafc;
   min-height: 100vh;
   padding: 24px;
-  width: 100%;
-  margin-left: 0px;
-  /* margin-right: 500px; */
-  /* justify-content: flex-end; */
 }
 
 .mem-max-width {

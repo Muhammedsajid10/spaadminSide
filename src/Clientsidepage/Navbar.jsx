@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
@@ -8,6 +8,35 @@ import spa from '../Images/spppa.jpg';
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+
+  // Handle body scrolling when dropdowns are open
+  useEffect(() => {
+    if (showSearch || showNotifications) {
+      document.body.classList.add('dropdown-open');
+    } else {
+      document.body.classList.remove('dropdown-open');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('dropdown-open');
+    };
+  }, [showSearch, showNotifications]);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.navbar-icons')) {
+        setShowSearch(false);
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleSearch = () => {
     setShowSearch(prev => !prev);
@@ -43,23 +72,28 @@ const Navbar = () => {
   ];
 
   return (
-    <div className='navbar-container'>
+    <nav className="navbar-container">
       <img src={spa} alt="Logo" className='spa-image' />
 
       <div className="navbar-icons">
         <div className="search-wrapper">
-          <button className='icon' onClick={toggleSearch}>
+          <button className='icon' onClick={toggleSearch} aria-label="Search">
             <FiSearch />
           </button>
           {showSearch && (
             <div className="search-dropdown">
-              <input type="text" placeholder="Search..." />
+              <input 
+                type="text" 
+                placeholder="Search..." 
+                autoFocus
+                onClick={(e) => e.stopPropagation()}
+              />
             </div>
           )}
         </div>
 
         <div className="notification-wrapper">
-          <button className='icon' onClick={toggleNotification}>
+          <button className='icon' onClick={toggleNotification} aria-label="Notifications">
             <IoNotificationsOutline />
           </button>
           {showNotifications && (
@@ -67,7 +101,7 @@ const Navbar = () => {
               <div className="appointments-container">
                 <div className="appointments-header">
                   <h1 className="appointments-title">Appointments</h1>
-                  <button className="more-button">
+                  <button className="more-button" aria-label="More options">
                     <MoreVertical size={20} className="more-icon" />
                   </button>
                 </div>
@@ -111,7 +145,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
