@@ -6,7 +6,7 @@ import "./DashboardLayout.css";
 
 const DashboardLayout = () => {
   return (
-    <div className="dashboard-container">
+    <div className="main-content-container">
       <div className="layout-nav-bar">
         <Navbar />
       </div>

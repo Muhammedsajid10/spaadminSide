@@ -39,7 +39,7 @@ const appointmentData = [
 // Graphs Component
 const Graphs = () => {
   return (
-    <div className="dashboard-container">
+    <div className="graph-upcoming-container">
       <div className="card">
         <div className="card-header">
           <h3>Recent sales</h3>

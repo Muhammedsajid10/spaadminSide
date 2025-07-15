@@ -30,9 +30,9 @@ const Sidenavbar = () => {
     { icon: <FaCalendarAlt />, label: "Calendar", to: "/calendar" },
     { icon: <FaSalesforce />, label: "Sales", to: "/sales" },
     { icon: <FaUserFriends />, label: "Appointments", to: "/appointments" },
-    { icon: <FaUserTie />, label: "Team", to: "/team" },
-    { icon: <FaThLarge />, label: "Catalog", to: "/catalog" },
-    { icon: <FaIdCard />, label: "Clients", to: "/clients-list" },
+    { icon: <FaUserTie />, label: "Team", to: "/catalog" },
+    { icon: <FaThLarge />, label: "Catalog", to: "/team" },
+    // { icon: <FaIdCard />, label: "Clients", to: "/clients-list" },
     { icon: <FaTachometerAlt />, label: "Dashboard", to: "/dashboard" },
   ];
 

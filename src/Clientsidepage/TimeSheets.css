@@ -1,11 +1,15 @@
 /* Main Container */
 .timesheet-main-wrapper {
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   height: 100%;
   overflow: auto;
+  margin-left: 11px;
+  width: 100%;
+  margin-top: -20px;
+
 }
 
 /* Header Section */

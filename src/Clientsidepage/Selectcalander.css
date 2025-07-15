@@ -371,7 +371,7 @@
   background: white;
   border-bottom: 1px solid #e5e7eb;
   width: 1200px;
-  margin-left: 70px;
+  /* margin-left: 70px; */
 }
 
 .tb-left {
@@ -494,7 +494,7 @@
   overflow: auto;
   width: 1200px;
   background: white;
-  margin-left: 70px;
+  /* margin-left: 70px; */
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

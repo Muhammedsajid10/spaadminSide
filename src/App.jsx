@@ -40,8 +40,8 @@ function App() {
           <Route index element={<DashboardPage />} />
           <Route path="calendar" element={<Scheduler />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="appointments" element={<Appoint />} />
           <Route path="clients-list" element={<ClientsList />} />
+          <Route path="appointments" element={<ClientsList />} />
           
           {/* Sales Sidebar Routes */}
           <Route path="sales/*" element={<SalesSidebarLayout />}>

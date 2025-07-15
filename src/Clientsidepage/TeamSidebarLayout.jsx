@@ -7,21 +7,18 @@ import TeamSideBar from './TeamSideBar';
 // import "../Clientsidepage/TeamSideBar.css";
 import "../Clientsidepage/CatalogSidebarLayout.css";
 
-
 const TeamSideBarLayout = () => {
   return (
-    <>
-     <div className="dashboard-container">
+     <>
       <div className="layout-nav-bar">
         <Navbar />
       </div>
-      <div className="dashboard-content">
+    <div className="dashboard-content">
         <TeamSideBar />
-        <div className="catalog-content">
+       <div className="main-content">
           <Outlet />
         </div>
       </div>
-    </div>
     </>
   );
 };

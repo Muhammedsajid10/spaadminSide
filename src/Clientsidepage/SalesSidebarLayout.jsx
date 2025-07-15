@@ -1,9 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import Sidenavbar from './Firstdashboard';
+// import Sidenavbar from './Firstdashboard';
 import SecondDashboard from './Seconddashboard';
-import './SalesSidebarLayout.css';
+// import './SalesSidebarLayout.css';
 
 const SalesSidebarLayout = () => {
   return (

@@ -98,7 +98,10 @@
 /* Adjust main content margin */
 .main-content {
   transition: margin-left 0.3s ease-out;
-  margin-left: 20px; /* Default: space for both sidebars */
+  margin-left: 80px; /* Default: space for both sidebars */
+  margin-top: -20px;
+  width: 1000px;
+  height: 100%;
 }
 .menu-item.subtitle {
   font-size: 18px;
