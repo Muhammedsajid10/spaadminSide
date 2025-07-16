@@ -141,16 +141,16 @@ const ServiceMenu = () => {
         <div className="service-menu__search-section">
           <div className="service-menu__search-wrapper">
             <Search className="service-menu__search-icon" size={20} />
-         <div className="service-menu__search-wrapper">
-  <Search className="service-menu__search-icon" size={20} />
-  <input
-    type="text"
-    className="service-menu__search-input"
-    placeholder="Search service name"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-</div>
+            <div className="service-menu__search-wrapper">
+              <Search className="service-menu__search-icon" size={20} />
+              <input
+                type="text"
+                className="service-menu__search-input"
+                placeholder="Search service name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
 
           </div>
         </div>
@@ -166,11 +166,10 @@ const ServiceMenu = () => {
             {categories.map((category) => (
               <button
                 key={category.name}
-                className={`service-menu__category ${
-                  selectedCategory === category.name
+                className={`service-menu__category ${selectedCategory === category.name
                     ? "service-menu__category--active"
                     : ""
-                }`}
+                  }`}
                 onClick={() => setSelectedCategory(category.name)}
               >
                 <span className="service-menu__category-name">

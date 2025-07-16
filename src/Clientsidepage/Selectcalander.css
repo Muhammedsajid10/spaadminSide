@@ -370,7 +370,7 @@
   padding: 16px;
   background: white;
   border-bottom: 1px solid #e5e7eb;
-  width: 1200px;
+  width: 1000px;
   /* margin-left: 70px; */
 }
 
@@ -492,7 +492,7 @@
   margin-top: 20px;
   height: calc(100vh - 100px);
   overflow: auto;
-  width: 1200px;
+  width: 1000px;
   background: white;
   /* margin-left: 70px; */
   border-radius: 8px;

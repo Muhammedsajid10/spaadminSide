@@ -48,7 +48,7 @@ function App() {
             <Route index element={<Dailysalesss />} />
             <Route path="daily-summary" element={<Dailysalesss />} />
             <Route path="appointments" element={<Appoint />} />
-            <Route path="sales-page" element={<SalesPage />} />
+            {/* <Route path="sales-page" element={<SalesPage />} /> */}
             <Route path="payments" element={<Paymentclient />} />
             <Route path="gift-cards" element={<Giftcards />} />
             <Route path="memberships" element={<Memberss />} />
